@@ -1,7 +1,10 @@
 from parser_script import Autoru_parser as Ap
 from database_script import Database as Db
+import os
 
-connection = Db.create_connection("D:/python/parse/sm_app.sqlite")
+script_dir = os.getcwd()
+
+connection = Db.create_connection(script_dir +  "\\sm_app.sqlite")
 
 creator = Db.create_car_table()
 
