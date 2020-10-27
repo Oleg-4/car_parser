@@ -75,8 +75,6 @@ def database_recorder():
 		
 		record(car_massive[i],car_massive[i + 1], car_massive[i + 2])
 
-	ui.lcdNumber.display(counter)
-
 	show_carlist()
 
 	year_beg = str(ui.lineEdit.text())
@@ -113,15 +111,15 @@ def show_carlist():
 		year2_end = dete[0:4]
 
 	ui.listWidget.clear()
-
 	viewlist = read('SELECT id, model, price, year FROM cars WHERE year BETWEEN '+ year2_beg + ' AND ' + year2_end )
-
 	str_viewlist = [str(i) for i in viewlist]
+	digit_counter = 0	
 	
 	for i in str_viewlist:
+		digit_counter += 1
 		ui.listWidget.addItem(i)
 
-	
+	ui.lcdNumber.display(digit_counter)
 
 def main():
 	
