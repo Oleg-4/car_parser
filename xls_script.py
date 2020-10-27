@@ -35,6 +35,6 @@ class Xls:
 
 			quad_counter += 1
 		
-		stringer = script_dir + '\\exel_base\\' + timer[12:13] + timer[14:16] + timer[17:19] + '.xls'
+		stringer = script_dir + '\\exel_base\\' + timer[11:13] + timer[14:16] + timer[17:19] + '.xls'
 		
 		wb.save(str(stringer))
