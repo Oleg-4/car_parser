@@ -7,6 +7,7 @@ from parser_interface import Ui_MainWindow
 from xls_script import Xls
 import datetime
 
+
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
 ui = Ui_MainWindow()
@@ -25,17 +26,15 @@ except FileExistsError :
 	pass
 
 
-
 def create_new_table():
 	
 	creator = Db.create_car_table()
 	Db.execute_query(connection,creator)
 
-
+	
 def car_massive_function(car_name):
 	
 	return Ap.parse(car_name)
-
 
 
 def read(select):
@@ -60,23 +59,18 @@ def database_recorder():
 
 	database_delete()
 	create_new_table()
-
 	current_car = str(ui.comboBox.currentText())
 	car_massive = car_massive_function(current_car)
-
 	writer_massive = []
-	
 	border = len(car_massive)
 	counter = 0
 
 	for i in range(0,int(border),3):
 
 		counter += 1
-		
 		record(car_massive[i],car_massive[i + 1], car_massive[i + 2])
 
 	show_carlist()
-
 	year_beg = str(ui.lineEdit.text())
 	year_end = str(ui.lineEdit_2.text())
 
@@ -92,12 +86,9 @@ def database_recorder():
 			writer_massive.append(it)
 
 	print(writer_massive)
-
 	Xls.xls_output(writer_massive)
 
-
-
-
+	
 def show_carlist():
 
 	year2_beg = str(ui.lineEdit.text())
@@ -121,23 +112,20 @@ def show_carlist():
 
 	ui.lcdNumber.display(digit_counter)
 
+
 def main():
 	
 	ui.setupUi(MainWindow)
 	MainWindow.show()
 
 	carnamelist = ['vesta','focus','camry','a4']
-	
 	for i in carnamelist:
-		
 		ui.comboBox.addItem(i)
-
 	create_new_table()
-	
 	ui.pushButton.clicked.connect(database_recorder)
 	
 	sys.exit(app.exec_())
 
-#database_recorder()
+	
 if __name__ == "__main__":
 	main()
